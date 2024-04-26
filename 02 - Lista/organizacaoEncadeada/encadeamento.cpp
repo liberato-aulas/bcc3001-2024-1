@@ -12,8 +12,11 @@ class No {
    No* prox;
 
    No() {}
-   No(int dado) {}
-   No(int dado, No* prox) {}
+   No(int dado) { this->dado = dado; }
+   No(int dado, No* prox) {
+      this->dado = dado;
+      this->prox = prox;
+   }
 };
 
 void printEncadeada(No* no) {
@@ -55,11 +58,11 @@ int main() {
 
    //    n1->dado = 1;
    n2->dado = 2;
-   n3->dado = 3;
+   //   n3->dado = 3;
 
    n1->prox = n2;
    n2->prox = n3;
-   n3->prox = nullptr;
+   //    n3->prox = nullptr;
 
    n3->prox = new No();
    n3->prox->dado = 4;
