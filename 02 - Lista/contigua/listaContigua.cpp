@@ -4,19 +4,19 @@
 class ListaContigua {
 
   private:
-   int* array;
-   int capacity;
-   int size;
+   int* vetor;
+   int tam;
+   int qtde;
 
   public:
    ListaContigua();
    ~ListaContigua();
 
-   // Insere o elemento e na última posição
+   // Insere o elemento na última posição
    bool push_back(int e);
-   // Insere o elemento e na primeira posição
+   // Insere o elemento na primeira posição
    bool push_front(int e);
-   // Insere o elemento e na posição pos
+   // Insere o elemento na posição pos
    bool insert(int pos, int e);
 
    // Remove o último elemento
