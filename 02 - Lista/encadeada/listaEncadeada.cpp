@@ -62,7 +62,25 @@ class ListaEncadeada {
    }
 
    // Insere o elemento e na posição pos
-   bool insert(int pos, int e);
+   bool insert(int pos, int e) {
+
+      if (this->empty()) {
+         return this->push_back(e);
+      } else if (pos == 0) {
+         return this->push_front(e);
+      } else if (pos == this->qtde) {
+         return this->push_back(e);
+      } else {
+         No* novo = new No(nullptr, e, nullptr);
+         No* aux = this->primeiro;
+         for (int i = 0; i < pos - 1; i++) {
+            aux = aux->prox;
+         }
+      }
+
+      this->qtde++;
+      return true;
+   }
 
    // Remove o último elemento
    // int pop_back();
