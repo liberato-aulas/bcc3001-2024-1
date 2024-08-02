@@ -62,30 +62,58 @@ class ListaEncadeada {
    }
 
    // Insere o elemento e na posição pos
-   bool insert(int pos, int e) {
+   bool insert(int pos, int e) {      
+      if (pos < 0) return false;
+      if (pos > this->qtde) return false;
 
-      if (this->empty()) {
+      
+      if (this->empty()) {            // Primeiro elemento da lista
          return this->push_back(e);
-      } else if (pos == 0) {
+      } else if (pos == 0) {          // Primeira posição
          return this->push_front(e);
-      } else if (pos == this->qtde) {
+      } else if (pos == this->qtde) { // Última posição
          return this->push_back(e);
       } else {
          No* novo = new No(nullptr, e, nullptr);
+         // Posicionar o aux no nó que antecede a posição desejada
          No* aux = this->primeiro;
          for (int i = 0; i < pos - 1; i++) {
             aux = aux->prox;
          }
+         novo->prox = aux->prox; 
+         novo->ant = aux;
+         aux->prox->ant = novo; 
+         aux->prox = novo;         
       }
-
       this->qtde++;
       return true;
    }
 
-   // Remove o último elemento
-   // int pop_back();
+   // Remove o último elemento. Devolve o elemento removido
+   // int pop_back(){
+
+      
+   // }
    // Remove o primeiro elemento
-   // int pop_front();
+   int pop_front(){
+      if (this->empty()) return -999999;
+
+      No* aux = this->primeiro;
+      this->primeiro = this->primeiro->prox;
+      
+      // Estou removendo o único elemento da lista
+      if (this->primeiro == nullptr){
+         this->ultimo = nullptr;
+      }else {
+         this->primeiro->ant = nullptr;
+      }
+
+      int removido = aux->dado;
+      delete aux;
+      this->qtde--;
+      
+      return removido;
+   }
    // Remove o elemento da posição pos e retorna o elemento removido
    // int erase(int pos);
 
@@ -103,7 +131,9 @@ class ListaEncadeada {
    bool empty() { return this->qtde == 0; }
 
    // Devolve a quantidade de elementos
-   // int size();
+   int size(){
+      return this->qtde;
+   }
    // Substitui o elemento da posição pos pelo elemento e
    // bool replace(int pos, int e);
 
@@ -132,6 +162,6 @@ class ListaEncadeada {
          if (aux != this->primeiro) printf(",");
       }
 
-      printf("]");
+      printf("]\n");
    }
 };
